@@ -70,9 +70,10 @@
 				var listener=core.getLib("AddDataEventLister");
 				var getCart=core.getLib("getCart");
 				listener("checkoutButton",{click:function() { 
-																getCart(ob1); 
-															}
-														});
+					getCart(ob1); 
+					a.cartContainerClear();
+				}
+			});
 			}
 			
 	};//end of proto
