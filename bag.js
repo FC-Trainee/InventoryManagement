@@ -187,7 +187,7 @@
 			
 			//console.log(obj);
 			cart.addBagInCart(obj);
-			cart.calculateAmount();
+			cart.calculateAmount(obj);
 		};
 
 		//Triggered when the second dropdown value gets changed.
@@ -239,11 +239,11 @@
 	var KEY = "";
 	(function()
 	{
-	KEY = core.getKeys("ayan"); 
-	var out = core.setLib(KEY, "obj", obj);
-	
+		KEY = core.getKeys("ayan"); 
+		var out = core.setLib(KEY, "obj", obj);
+		
 
 	//console.log(out+"ayan");
-	})();	
-	
+})();	
+
 })();
