@@ -9,21 +9,23 @@
 
 	}
 
-	Item.prototype.getName=function(){
+	Item.prototype={
+		getName:function(){
 
-		return this.name;
-	};			
+			return this.name;
+		},			
 
-	Item.prototype.getId=function(){
+		getId:function(){
 
-		return this.id;
-		
-	};	
-	Item.prototype.getPrice=function(){
+			return this.id;
+			
+		},	
+		getPrice:function(){
 
-		return this.price;
+			return this.price;
 
-	};					
+		}
+	};				
 
 	//Inventory items function
 	var InventoryItems=function(){
@@ -51,33 +53,31 @@
 
 	};
 
-	InventoryItems.prototype.getAllItems=function(){
-		var j=0;
+	InventoryItems.prototype={
+		getAllItems:function(){
+			var j=0;
+			return this.items;
 
-		return this.items;
-	};
+		},
+		getItemById:function(id){
 
-	InventoryItems.prototype.getItemById=function(id){
-
-		var item,category;
+			var item,category;
+			
+			for(var i in Object.keys(this.items)){
+				var keyname=Object.keys(this.items)[i],
+				object=this.items[keyname];
+				for(var j in object){
+					
 		
-		for(var i in Object.keys(this.items))
-		{
-			var keyname=Object.keys(this.items)[i],
-			object=this.items[keyname];
-			for(var j in object){
-				
-	
-				if(object[j].getId()==id){
-					return object[j];
+					if(object[j].getId()==id){
+						return object[j];
+					}
+
 				}
-
 			}
-		
 
 		}
-
-	};	
+	};
 
 	function grocery(){
 
