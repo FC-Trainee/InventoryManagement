@@ -28,8 +28,7 @@
 	//Inventory items function
 	var InventoryItems=function(){
 		
-		var i,itemCatalog,name,id,price,item;
-		var categories=[];
+		var i,itemCatalog,name,id,price,item,categories=[];
 		this.items={};
 		//storing the item catalog to a variable
 		itemCatalog=catalogData;
@@ -60,14 +59,13 @@
 
 	InventoryItems.prototype.getItemById=function(id){
 
-		var item,j,category;
-		j=0;
+		var item,category;
 		
 		for(var i in Object.keys(this.items))
 		{
-			var keyname=Object.keys(this.items)[i];
-			var object=this.items[keyname];
-			for(j in object){
+			var keyname=Object.keys(this.items)[i],
+			object=this.items[keyname];
+			for(var j in object){
 				
 	
 				if(object[j].getId()==id){
@@ -113,11 +111,12 @@
 
     function PopulateList(){
 
-		var i,items,itemlist,categoryOptions;
-		items=inventoryObject;
+		var inventoryObject=new InventoryItems(),
+		items=inventoryObject,i,
+		itemlist=items.getAllItems(),
+		categoryOptions=[],
+		createOptions=core.getLib("createOptions");
 
-		itemlist=items.getAllItems();
-		categoryOptions=[];
 		categoryOptions.push({name:"Select Category"});
 		
 		for(i in Object.keys(itemlist)){
@@ -128,13 +127,7 @@
 		var onChangeEvent={
 
 			change:PopulateItems
-
 		};
-
-
-
-    							
-    	var createOptions=core.getLib("createOptions");
     						
     	createOptions.createElement("category",categoryOptions,onChangeEvent);
     					
@@ -142,14 +135,12 @@
 
 		function PopulateItems(){
 					
-			var itemOptions=[];
-
-		
+			var itemOptions=[],
+			category=document.getElementById('category').value,
+			object=itemlist[category];
 			createOptions.removeElement('items');
 			
-			var category=document.getElementById('category').value;
 
-			var object=itemlist[category];
 			for(var j in object){
 				
 				itemOptions.push({id:object[j].getId(),name:object[j].getName()});
@@ -166,23 +157,17 @@
                 		
 	}
     		
-    var inventoryObject=new InventoryItems();
-    var groceryObject=new grocery();
-    var beverageObject=new beverages();
+    
 
 	var registerApi=function(){
 
-		var KEY = "";
-		KEY = core.getKeys("ronojit");
-		
-		var out=core.setLib(KEY, "InventoryItems", InventoryItems);
+		var KEY =core.getKeys("ronojit");
+		core.setLib(KEY, "InventoryItems", InventoryItems);
 		core.setLib(KEY,"grocery",grocery);
 		core.setLib(KEY,"beverages",beverages);
-		PopulateList();
-
 	};
 
 	//Calling Register Api which is registering all the class references
 	registerApi();
-
+	PopulateList();
 })();
