@@ -184,10 +184,9 @@
 				//NewData is pushed to the selected Data array.
 				selectedData.push(newData);
 			}
-			
 			//console.log(obj);
-			cart.addBagInCart(obj);
-			cart.calculateAmount(obj);
+			cart.addBagInCart();
+			cart.calculateAmount();
 		};
 
 		//Triggered when the second dropdown value gets changed.
@@ -233,17 +232,24 @@
 			return total;
 		}*/
 	}
+	function Reinitialize(){
 
+	}
+	Reinitialize.prototype= {
+		emptybags : function(){
+			obj = {};
+		}
+	}
+	var reinit = new Reinitialize();
 	// var productOptionData = new product();
 	// var  carttemplate= new cartTemplate();
 	var KEY = "";
 	(function()
 	{
-		KEY = core.getKeys("ayan"); 
-		var out = core.setLib(KEY, "obj", obj);
-		
-
+	KEY = core.getKeys("ayan"); 
+	core.setLib(KEY, "obj", obj);
+	core.setLib(KEY, "reinitialize", reinit);
 	//console.log(out+"ayan");
-})();	
-
+	})();	
+	
 })();
