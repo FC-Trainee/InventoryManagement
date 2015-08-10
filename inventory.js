@@ -11,8 +11,8 @@
 
 	Item.prototype.getName=function(){
 
-			return this.name;
-		};		
+		return this.name;
+	};		
 
 	Item.prototype.getId=function(){
 
