@@ -74,6 +74,7 @@
 		if(selectedElement("category").value === "Select Category"){
 			//If "Select Category is selected in the dropdown, then the input boxes gets blank."
 			productOptionData.productInputSet("","","");
+			document.getElementById("items").remove();
 			//Disabling all the buttons
 			add_Button.disable();
 			plus_Button.disable();
@@ -140,6 +141,8 @@
 		//Function to be listened when the Add button is pressed
 		this.add= function()
 		{
+			debugger;
+
 			//var upperLimit, lowerLimit;
 			if(selectedElement("category").value === "grocery"){
 				selectedData = obj.grocery;
@@ -151,17 +154,27 @@
 				// upperLimit = 4;
 				// lowerLimit = 2;
 			}
+			console.log(selectedData);
 			var flag=0;
 			var id = selectedElement("items").id;
 			for(var keys in selectedData)
 			{
 				if(selectedData[keys].id == id)
 				{
+					
 					// total = document.getElementById("qty").value + this.calculate_total_item(selectedData);
 					// if(total >= lowerLimit && total <= upperLimit){
 						
 					//Obtain the values in the input boxes. productsInputGetIds() returns an object that contains all the required values.
-					selectedData[keys].quantity = productOptionData.productsInputGetIds().qty; 
+					selectedData[keys].quantity = productOptionData.productsInputGetIds().qty;
+					if(productOptionData.productsInputGetIds().qty == 0){
+						var index = selectedData.indexOf(selectedData[keys]);
+						//alert("Before Splice : "+selectedData.length);
+						if(index > -1){
+							selectedData.splice(index,1);
+							//alert("After Splice : "+selectedData.length);
+						}
+					} 
 					flag=1;	
 					//}
 					/*else{
@@ -184,9 +197,11 @@
 				//NewData is pushed to the selected Data array.
 				selectedData.push(newData);
 			}
+			//alert("Before CArt : "+obj.grocery.length + " "+ obj.bev.length);
 			//console.log(obj);
 			cart.addBagInCart();
 			cart.calculateAmount();
+
 		};
 
 		//Triggered when the second dropdown value gets changed.
@@ -241,9 +256,9 @@
 			obj.bev=[];
 			core.setLib(KEY, "obj", obj);
 			document.getElementById("category").value = "Select Category";
-			document.getElementById("items").value = "";
-			var itm=new elementEnableDisable("items");
-			itm.disable();
+			document.getElementById("items").remove();
+			//var itm=new elementEnableDisable("items");
+			//itm.disable();
 			changeSelection();
 		}
 	};
