@@ -70,6 +70,18 @@
 	// }
 
 	//Listened to when selection of a dropdown is changed.
+	function get_total_quantity(selectedData){
+		debugger;
+		var total = 0;
+		for(var keys in selectedData)
+		{
+			if(selectedData[keys].name !== productOptionData.productsInputGetIds().name)
+				total += parseInt(selectedData[keys].quantity);
+		}
+		alert(total+parseInt(productOptionData.productsInputGetIds().qty));
+		return (total+parseInt(productOptionData.productsInputGetIds().qty));
+	}
+
 	function changeSelection(){
 		if(selectedElement("category").value === "Select Category"){
 			//If "Select Category is selected in the dropdown, then the input boxes gets blank."
@@ -139,23 +151,28 @@
 		var cart=core.getLib("cart");
 
 		//Function to be listened when the Add button is pressed
+		var flag=0;
+
 		this.add= function()
 		{
-			debugger;
-
+			/*debugger;
+			console.log(obj);*/
 			//var upperLimit, lowerLimit;
 			if(selectedElement("category").value === "grocery"){
 				selectedData = obj.grocery;
-				// upperLimit = 6;
-				// lowerLimit = 2;
+				if(get_total_quantity(selectedData) > 6){
+					console.log("Grocery Bag limit exceeded!");
+					return;
+				}
 			}
 			else{
 				selectedData = obj.bev;
-				// upperLimit = 4;
-				// lowerLimit = 2;
+				if(get_total_quantity(selectedData) > 4){
+					console.log("Beverage Bag limit exceeded!");
+					return;
+				}
 			}
-			console.log(selectedData);
-			var flag=0;
+			//console.log(selectedData);
 			var id = selectedElement("items").id;
 			for(var keys in selectedData)
 			{
@@ -256,9 +273,6 @@
 			obj.bev=[];
 			core.setLib(KEY, "obj", obj);
 			document.getElementById("category").value = "Select Category";
-			document.getElementById("items").remove();
-			//var itm=new elementEnableDisable("items");
-			//itm.disable();
 			changeSelection();
 		}
 	};
@@ -268,10 +282,10 @@
 	var KEY = "";
 	(function()
 	{
-	KEY = core.getKeys("ayan"); 
-	core.setLib(KEY, "obj", obj);
-	core.setLib(KEY, "reinitialize", reinit);
+		KEY = core.getKeys("ayan"); 
+		core.setLib(KEY, "obj", obj);
+		core.setLib(KEY, "reinitialize", reinit);
 	//console.log(out+"ayan");
-	})();	
-	
+})();	
+
 })();
