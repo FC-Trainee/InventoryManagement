@@ -26,7 +26,7 @@
 
 	};			
 
-	//Inventory items function
+	//Inventory items class to initialize inventory items from catalog.json file
 	var InventoryItems=function(){
 		
 		var i,itemCatalog,name,id,price,item,categories=[];
@@ -53,7 +53,6 @@
 	};
 
 	InventoryItems.prototype.getAllItems=function(){
-			var j=0;
 			return this.items;
 
 	};
@@ -105,7 +104,7 @@
 	}
 
 	beverages.prototype=Object.create(InventoryItems);
-
+	//Function to populate category drop down list
     function PopulateList(){
 
 		var inventoryObject=new InventoryItems(),
@@ -120,16 +119,10 @@
 
 			categoryOptions.push({name:Object.keys(itemlist)[i]});
 		}
-
-		var onChangeEvent={
-
-			change:PopulateItems
-		};
-    						
-    	createOptions.createElement("category",categoryOptions,onChangeEvent);
+   		createOptions.createElement("category",categoryOptions,{change:PopulateItems});
     					
     	var itemList=document.getElementById('items');
-
+    	//Function to populate item drop down list
 		function PopulateItems(){
 					
 			var itemOptions=[],
@@ -144,20 +137,11 @@
 				}
 				createOptions.createElement("items",itemOptions);
 			}
-		
-			
-					
-			
-
-					
 		}
 
-                		
-	}
-    		
-    
-
-	var registerApi=function(){
+    }
+    //Function to register function references
+    var registerApi=function(){
 
 		var KEY =core.getKeys("ronojit");
 		core.setLib(KEY, "InventoryItems", InventoryItems);
