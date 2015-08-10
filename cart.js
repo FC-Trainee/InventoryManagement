@@ -14,9 +14,10 @@
 
 	Cart.prototype= {
 
-		addBagInCart : function(ob1) {
+		addBagInCart : function() {
 
 			var a=core.getLib("cartTemplate");
+			var ob1=core.getLib("obj");
 			
 			if (!this.flag)	{
 				this.flag=true;
@@ -63,15 +64,18 @@
 				a.beverageTextboxes(5, btax.getVat(), btax.getAdditionalVat(), this.final2);
 			},
 
-			calculateAmount : function(ob1) {
+			calculateAmount : function() {
 
 				var a=core.getLib("cartTemplate");
+				var ob1=core.getLib("obj");
+				var reinit=core.getLib("reinitialize");
 				a.grandTotal(this.final1+this.final2);
 				var listener=core.getLib("AddDataEventLister");
 				var getCart=core.getLib("getCart");
 				listener("checkoutButton",{click:function() { 
 					getCart(ob1); 
 					a.cartContainerClear();
+					reinit.emptybags();
 				}
 			});
 			}
