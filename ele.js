@@ -5,7 +5,17 @@
 		var gdisc=Math.floor((Math.random() * 20) + 5);
 		var bdisc=Math.floor((Math.random() * 25) + 10);
 
-		//var mainContainer=createElement("div",{"id":"mainContainer","style":"width:100%; height:93%; border:1px solid #6F6F6F; border-radius:5px; margin-top:20px;"}, header);
+		
+		/*
+			This a method which helps to create individual html elements.
+			it takes as input parameter 
+			1. html Tag name like div or span or input or others, 
+			2. parent element name,
+			3. attribute object like id, value, type, style.
+			4. event handler object like click or change or others.
+
+		*/
+
 		function createElement(tagName, parent, attributeObj, eventObj)
 		{		
 			var element=document.createElement(tagName);
@@ -30,6 +40,11 @@
 		}
 
 
+
+		/*
+			creating a body object and others wrapper div.
+		*/
+
 		var body=document.body;
 		var mainContainer = createElement("div", body, {id:"mainContainer", style:"border:0px solid; padding:2%"});
 		var block = createElement("div", mainContainer, {id:"block", style:"width:100%; height:auto; border:0px solid"} );
@@ -39,8 +54,19 @@
 		var productInfo = createElement("div", boughtItems, {id:"productInfo"});
 	
 
+
+		/*
+			starting a timer to generate random discount on grocery and beverage items.
+		*/
 		setInterval(function(){ gdisc=Math.floor((Math.random() * 20) + 5);}, 2000);
 		setInterval(function(){ bdisc=Math.floor((Math.random() * 25) + 10);}, 3000);
+
+
+
+		/*
+			this template helps to create a dropdown list 
+		
+		*/
 
 		function createOptions()
 		{
@@ -76,6 +102,10 @@
 			return document.getElementById(id).options[document.getElementById(id).selectedIndex];
 		}
 
+
+
+		// A template which shows the product details beside the dropdown list.
+		// this template populate data when the dropdown list item is change.
 
 		function product(name, price, qty) 
 		{	
@@ -153,8 +183,8 @@
 													document.getElementById('qty').value = parseInt(qty) - 1;
 											}
 
-
-				//{change: function (){console.log('test');}}
+				// add the event against the tagId.							
+				//{event_Name: function_reference
 				function AddDataEventLister(tagId, eventObj)
 				{
 					var add=document.getElementById(tagId);
@@ -209,6 +239,8 @@
 				//e.disable();
 				//e.enable();
 
+
+				// its a cart Template
 
 				function cartTemplate()
 				{
@@ -296,13 +328,7 @@
 						createElement("input", groceryData, {type:"text", readOnly:"true", value:totalAmount, style:"width:4em"} );		
 
 						var grocdis = document.getElementById('grocdis');
-						/*var gref=grocdis.setAttribute;
-						grocdis.setAttribute=(function(){
-							//grocdis.setAttribute.apply(gref,);
-							console.log(grocdis.setAttribute());
-							//grocdis.setAttribute.apply(gref,setInterval(function(){ alert("Hello"); }, 1000););
-							//setInterval(function(){ alert("Hello1"); }, 1000).apply(gref,(function(){ alert("Hello2"); }, 1000))
-						})();*/
+						
 					},
 
 
@@ -348,6 +374,9 @@
 
 				};
 
+
+
+				//its a product Export details Template
 
 				function productInfoTemp()
 				{
