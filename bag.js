@@ -71,14 +71,14 @@
 
 	//Listened to when selection of a dropdown is changed.
 	function get_total_quantity(selectedData){
-		debugger;
+		//debugger;
 		var total = 0;
 		for(var keys in selectedData)
 		{
 			if(selectedData[keys].name !== productOptionData.productsInputGetIds().name)
 				total += parseInt(selectedData[keys].quantity);
 		}
-		alert(total+parseInt(productOptionData.productsInputGetIds().qty));
+		//alert(total+parseInt(productOptionData.productsInputGetIds().qty));
 		return (total+parseInt(productOptionData.productsInputGetIds().qty));
 	}
 
