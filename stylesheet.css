@@ -1,0 +1,23 @@
+.cart-Grocery-Heading
+{
+	background-color: #009933;
+	color: white;
+	text-shadow: 1px 1px black;
+	text-decoration: underline;
+}
+
+.cart-beverage-Heading
+{
+	background-color: #009900;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	text-decoration: underline;
+}
+
+.cart-item-row
+{
+	background-color: #E6FFE6;
+	color: black;
+	text-shadow: 1px 1px 1px white;
+	border-bottom: 1px solid;
+}
