@@ -237,9 +237,16 @@
 	}
 	Reinitialize.prototype= {
 		emptybags : function(){
-			obj = {};
+			obj.grocery=[];
+			obj.bev=[];
+			core.setLib(KEY, "obj", obj);
+			document.getElementById("category").value = "Select Category";
+			document.getElementById("items").value = "";
+			var itm=new elementEnableDisable("items");
+			itm.disable();
+			changeSelection();
 		}
-	}
+	};
 	var reinit = new Reinitialize();
 	// var productOptionData = new product();
 	// var  carttemplate= new cartTemplate();
