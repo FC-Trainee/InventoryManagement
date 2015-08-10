@@ -33,7 +33,7 @@
 
 	var productInfoTemp = core.getLib("productInfoTemp");
 	function getCart(obj) {
-		// console.log(obj);
+		console.log(obj);
 		productInfoTemp.template();
 		for (var i in obj.grocery) {
 			// console.log(obj.grocery[i]);
