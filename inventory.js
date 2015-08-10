@@ -129,7 +129,6 @@
 			category=document.getElementById('category').value,
 			object=itemlist[category];
 			createOptions.removeElement('items');
-	//		if(category!='Select Category'){
 				for(var j in object){
 					
 					itemOptions.push({id:object[j].getId(),name:object[j].getName()});
@@ -137,7 +136,6 @@
 				}
 				createOptions.createElement("items",itemOptions);
 			}
-		//}
 
     }
     //Function to register function references
