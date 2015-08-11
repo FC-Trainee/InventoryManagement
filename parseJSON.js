@@ -16,14 +16,16 @@
 			flag = true;
 		}
 		for (var i in obj.grocery) {
-
-			productInfoTemp.groceryDetails(obj.grocery[i].id,obj.grocery[i].name,obj.grocery[i].price,obj.grocery[i].quantity,5);
-			data.grocery.push(obj.grocery[i]);
+			if (obj.grocery.hasOwnProperty(i)) {
+				productInfoTemp.groceryDetails(obj.grocery[i].id,obj.grocery[i].name,obj.grocery[i].price,obj.grocery[i].quantity,5);
+				data.grocery.push(obj.grocery[i]);
+			}	
 		}
 		for (var j in obj.bev) {
-
-			productInfoTemp.beverageDetails(obj.bev[j].id,obj.bev[j].name,obj.bev[j].price,obj.bev[j].quantity,10);
-			data.bev.push(obj.bev[j]);
+			if (obj.bev.hasOwnProperty(j)) {
+				productInfoTemp.beverageDetails(obj.bev[j].id,obj.bev[j].name,obj.bev[j].price,obj.bev[j].quantity,10);
+				data.bev.push(obj.bev[j]);
+			}		
 		}
 		item.push(JSON.stringify(obj,null,4));
 
